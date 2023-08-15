@@ -1,0 +1,144 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  background-color: rgb(241, 240, 241);
+}
+.section-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 600px;
+  padding: 60px 30px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 2px 2px 2px rgb(230, 202, 230);
+ 
+}
+.title {
+  font-family: "Open Sans", sans-serif;
+  text-transform: capitalize;
+  color: rgb(83, 82, 82);
+  letter-spacing: 5px;
+  margin-bottom: 20px;
+}
+.grocery-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+#add-inputItem {
+  width: 26rem;
+  height: 30px;
+  border: none;
+  background-color: rgb(245, 239, 239);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+input::placeholder {
+  font-family: "Poppins", sans-serif;
+  padding-left: 30px;
+  font-size: 18px;
+}
+#submit-btn {
+  height: 30px;
+  padding: 0 10px;
+  background-color: rgb(21, 241, 241);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  text-transform: capitalize;
+  border: none;
+}
+#submit-btn:hover{
+    background-color: rgb(3, 214, 214);
+    color: white;
+}
+.grocery-container{
+    cursor: pointer;
+    margin-top: 20px;
+}
+.grocery-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 30em;
+  height: 20px;
+  padding: 15px 15px;
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+}
+.grocery-item:hover{
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(245, 239, 239);
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+#edit-btn,
+#delete-btn{
+    border: transparent;
+    background-color: transparent;
+    font-size: 15px;
+}
+#edit-btn{
+    color: rgb(94, 245, 94);
+}
+#delete-btn{
+    color: rgb(238, 97, 97);
+}
+#edit-btn:hover{
+color:rgb(3, 255, 3);
+}
+#delete-btn:hover{
+color:red;
+}
+.clear-btn{
+  display: grid;
+  place-items: center;
+  margin-top: 1rem;
+  width: 8em;
+  height: 20px;
+  text-transform: capitalize;
+  letter-spacing: 2px;
+  font-size: 15px;
+  color: rgb(235, 124, 124);
+  margin: 0 auto;
+  margin-top: 20px;
+  background-color: transparent;
+  border: transparent;
+  cursor: pointer;
+  
+}
+.clear-btn:hover{
+    color: rgb(241, 27, 27); 
+}
+.alert{
+    background-color: rgb(188, 226, 188);
+    width: 100%;
+    height: 30px;
+  padding: 5px 10px;
+    border-radius: 5px;
+    text-transform: capitalize;
+    text-align: center;
+    margin: 20px 0;
+    cursor: pointer;
+    opacity: 0; /* Set initial opacity to 0 */
+    transition: opacity 0.5s ease; /* Apply the transition to the opacity property */
+  }
+  
+  .alert.show {
+    opacity: 1; /* When the .show class is applied, the opacity becomes 1 */
+  }
