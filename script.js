@@ -57,7 +57,7 @@ function deleteItemFromLocalStorage() {
   let items = groceryList.querySelectorAll(".grocery-item");
   items.forEach((item) => {
     item.querySelector(".delete-btn").addEventListener("click", function (e) {
-      let element = e.target.parentElement.parentElement.parentElement;
+      const element = e.target.parentElement.parentElement.parentElement;
       let itemText = item.querySelector(".item-text").textContent;
       element.remove();
 
@@ -77,17 +77,22 @@ function editElementFromLocalStorage(){
   items.forEach(item => {
   item.querySelector('.edit-btn').addEventListener('click', function(e) {
   
-    //let originalContent = editElement.textContent; // Store the original content
+    // let originalContent = editElement.textContent; // Store the original content
     let element = e.target.parentElement.parentElement.parentElement;
     let editedElementId = element.dataset.key;// Get the data-key value
     let editElement = item.querySelector('.item-text').textContent;
 
   
-    if (inputField.value !== editElement) {
-      inputField.value = editElement;
-      submitBtn.textContent = "Edit"; // Change button text to "Edit"
-      submitBtn.dataset.editId = editedElementId;// Set data-edit-id attribute
-   
+    // if (inputField.value !== editElement) {
+    //   inputField.value = editElement;
+    //   submitBtn.textContent = "Edit"; // Change button text to "Edit"
+      // submitBtn.dataset.editId = editedElementId;// Set data-edit-id attribute
+       // Use prompt to get the new value from the user
+       const newValue = prompt('Enter the new value for the item:', editElement);
+
+       if (newValue !== null && newValue !== editElement) {
+         item.querySelector('.item-text').textContent = newValue;
+         submitBtn.textContent = "Edit"; // Change button text to "Edit"
        }
 // Retrieve existing items from local storage
     let storedItems = JSON.parse(localStorage.getItem("userInput")) || [];
