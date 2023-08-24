@@ -140,3 +140,79 @@ input::placeholder {
 .alert.show {
   opacity: 1; /* When the .show class is applied, the opacity becomes 1 */
 }
+@media screen and( max-width: 480px){
+  .section-center {
+    width: 400px;
+    padding: 6px 3px;
+    border-radius: 10px;
+  }
+  .title {
+    font-size: 16px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+  .grocery-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  #add-inputItem {
+    width: 6rem;
+    height: 30px;
+    border: none;
+    background-color: rgb(245, 239, 239);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+  input::placeholder {
+    font-family: "Poppins", sans-serif;
+    padding-left: 30px;
+    font-size: 18px;
+  }
+  #submit-btn {
+    height: 30px;
+    padding: 0 10px;
+    background-color: rgb(21, 241, 241);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    text-transform: capitalize;
+    border: none;
+  }
+  #submit-btn:hover {
+    background-color: rgb(3, 214, 214);
+    color: white;
+  }
+  .grocery-container {
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  .grocery-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 30em;
+    height: 20px;
+    padding: 15px 15px;
+    margin-bottom: 0.5rem;
+    text-transform: capitalize;
+  }
+  .grocery-item:hover {
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(245, 239, 239);
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  #edit-btn,
+  #delete-btn {
+    border: transparent;
+    background-color: transparent;
+    font-size: 15px;
+  }
+}
