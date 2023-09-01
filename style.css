@@ -18,7 +18,7 @@ body {
   width: 600px;
   padding: 60px 30px;
   border-radius: 10px;
-  background-color: white;
+  background-color: rgb(253, 252, 252);
   box-shadow: 2px 2px 2px rgb(230, 202, 230);
 }
 .title {
@@ -55,10 +55,6 @@ input::placeholder {
   border-bottom-right-radius: 5px;
   text-transform: capitalize;
   border: none;
-}
-#submit-btn:hover {
-  background-color: rgb(3, 214, 214);
-  color: white;
 }
 .grocery-container {
   cursor: pointer;
@@ -140,11 +136,14 @@ input::placeholder {
 .alert.show {
   opacity: 1; /* When the .show class is applied, the opacity becomes 1 */
 }
-@media screen and( max-width: 480px){
+@media screen and ( max-width: 480px){
   .section-center {
-    width: 400px;
+    width: 300px;
+    height: auto;
     padding: 6px 3px;
     border-radius: 10px;
+    /* background-color: yellow; */
+    margin: auto;
   }
   .title {
     font-size: 16px;
@@ -158,30 +157,21 @@ input::placeholder {
     cursor: pointer;
   }
   #add-inputItem {
-    width: 6rem;
+    width: 10rem;
     height: 30px;
-    border: none;
-    background-color: rgb(245, 239, 239);
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+    outline: none;
+    color: black;
+    background-color: rgb(221, 218, 218);
   }
   input::placeholder {
-    font-family: "Poppins", sans-serif;
-    padding-left: 30px;
+    padding-left: 0px;
     font-size: 18px;
+    text-align: center;
   }
   #submit-btn {
     height: 30px;
+    font-size: 18px;
     padding: 0 10px;
-    background-color: rgb(21, 241, 241);
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    text-transform: capitalize;
-    border: none;
-  }
-  #submit-btn:hover {
-    background-color: rgb(3, 214, 214);
-    color: white;
   }
   .grocery-container {
     cursor: pointer;
@@ -191,16 +181,12 @@ input::placeholder {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 30em;
+    width: 20em;
     height: 20px;
-    padding: 15px 15px;
+    padding: 15px 5px;
     margin-bottom: 0.5rem;
     text-transform: capitalize;
-  }
-  .grocery-item:hover {
-    border-radius: 5px;
-    border: none;
-    background-color: rgb(245, 239, 239);
+    /* background-color: aqua; */
   }
   
   .button-container {
@@ -213,6 +199,23 @@ input::placeholder {
   #delete-btn {
     border: transparent;
     background-color: transparent;
-    font-size: 15px;
+    font-size: 20px;
   }
+#edit-btn {
+  color: rgb(5, 238, 5);
+}
+#delete-btn {
+  color: rgb(250, 2, 2);
+}
+.clear-btn {
+  font-size: 20px;
+  padding: 50px 0;
+  margin-top: 20px;
+}
+.alert {
+  height: 35px;
+  padding: 5px 20px;
+  border-radius: 5px;
+  margin: 20px 0;
+}
 }
