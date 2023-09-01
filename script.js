@@ -4,9 +4,9 @@ const addInput = document.querySelector(".grocery-form");
 const submitBtn = document.querySelector("#submit-btn");
 const groceryList = document.querySelector(".grocery-list");
 
-//function how to create item in the grocery list
+// Function to create an item in the grocery list
 function addItemToGroceryList(itemText) {
-  let item = document.createElement("article"); //creating elements
+  let item = document.createElement("article"); // Creating elements
 
   item.classList.add("grocery-item"); // Adding classes
   const itemId = Date.now(); // Assign a unique ID to the item
@@ -24,83 +24,83 @@ function addItemToGroceryList(itemText) {
     </button>
   </div>
 `;
-  groceryList.appendChild(item); //  Appending elements
+
+  // Attach event listeners for edit and delete buttons
+  const deleteButton = item.querySelector(".delete-btn");
+  const editButton = item.querySelector(".edit-btn");
+
+  deleteButton.addEventListener("click", () => {
+    deleteItem(item);
+  });
+
+  editButton.addEventListener("click", () => {
+    editItem(item);
+  });
+
+  groceryList.innerHTML = ''; // Clear the groceryList
+  groceryList.appendChild(item); // Appending the edited item
 }
-//adding item to grocery list
+
+// Adding item to grocery list
 addInput.addEventListener("submit", function (e) {
   e.preventDefault();
-  let userInput = addInput.querySelector("#add-inputItem").value;
+  let userInput = addInput.querySelector("#add-inputItem").value.trim(); // Trim whitespace from the input
 
-  addItemToGroceryList(userInput); // Add item to the grocery list= the userinput is what is being added to the list hence itemtext was just a random text we wanted to show something will be added
+  if (userInput !== "") { // Check if userInput is not empty
+    addItemToGroceryList(userInput); // Add item to the grocery list
 
-  let storedItems = JSON.parse(localStorage.getItem("userInput")) || []; // Retrieve existing items from local storage either if it has items or its an empty array
+    let storedItems = JSON.parse(localStorage.getItem("userInput")) || []; // Retrieve existing items from local storage either if it has items or it's an empty array
 
-  storedItems.push(userInput); // Add the new item to the array
-  localStorage.setItem("userInput", JSON.stringify(storedItems)); // Store the updated array in local storage
+    storedItems.push(userInput); // Add the new item to the array
+    localStorage.setItem("userInput", JSON.stringify(storedItems)); // Store the updated array in local storage
 
-  addInput.querySelector("#add-inputItem").value = ""; // Clearing input
+    addInput.querySelector("#add-inputItem").value = ""; // Clearing input
+  }
 });
 
-// Deleting and editing elements
-function deleteItemFromLocalStorage() {
-  let items = groceryList.querySelectorAll(".grocery-item");
-  items.forEach((item) => {
-    item.querySelector(".delete-btn").addEventListener("click", function (e) {
-      const element = e.target.parentElement.parentElement.parentElement;
-      let itemText = item.querySelector(".item-text").textContent;
-      element.remove();
+// Deleting elements
+function deleteItem(item) {
+  let itemText = item.querySelector(".item-text").textContent;
+  item.remove();
 
-      let storedItems = JSON.parse(localStorage.getItem("userInput")) || []; // Retrieve existing items from local storage either if it has items or its an empty array
-      storedItems = storedItems.filter((item) => item !== itemText);
-      localStorage.setItem("userInput", JSON.stringify(storedItems));
-      showAlert("Item deleted", "deleted"); // Pass 'deleted' as the action type
-    });
-  });
+  let storedItems = JSON.parse(localStorage.getItem("userInput")) || []; // Retrieve existing items from local storage either if it has items or it's an empty array
+  storedItems = storedItems.filter((storedItem) => storedItem !== itemText);
+  localStorage.setItem("userInput", JSON.stringify(storedItems));
+  showAlert("Item deleted", "deleted"); // Pass 'deleted' as the action type
 }
 
-// edit each item
-function editElementFromLocalStorage() {
+// Edit elements
+function editItem(item) {
   let inputField = addInput.querySelector("#add-inputItem");
-  let items = groceryList.querySelectorAll(".grocery-item");
+  let editElement = item.querySelector(".item-text");
+  let editedElementId = item.dataset.key;
 
-  items.forEach((item) => {
-    item.querySelector(".edit-btn").addEventListener("click", function (e) {
-      // let originalContent = editElement.textContent; // Store the original content
-      // let element = e.target.parentElement.parentElement.previousSibling;
-      console.log(element)
-      
-      let editedElementId = element.dataset.key; // Get the data-key value
-      // console.log(editedElementId)
-    //WRONG WRONG
-      // let editElement = item.querySelector(".item-text").textContent;
+  // Populate the input field with the item's text for editing
+  inputField.value = editElement.textContent;
 
-      let storedItems = JSON.parse(localStorage.getItem("userInput")) || []; // Retrieve existing items from local storage
+  localStorage.removeItem("userInput"); // Clear all items from local storage
 
-      
 
-      if (inputField.value !== editElement) {
-        inputField.value = editElement;
-        submitBtn.textContent = "Edit"; // Change button text to "Edit"
-      submitBtn.dataset.editId = editedElementId;// Set data-edit-id attribute
-      
-      let index = storedItems.findIndex(
-        (item) => item.itemId === editedElementId
-      ); // Find the index of the item to be edited
+  submitBtn.addEventListener("click", function editItemHandler() {
+    let storedItems = JSON.parse(localStorage.getItem("userInput")) || [];
+    let index = storedItems.findIndex((item) => item.itemId === editedElementId);
 
-      if (index !== -1) {
-        storedItems[index].itemText = inputField.value; // Update the item's content in local storage
-        localStorage.setItem("userInput", JSON.stringify(storedItems)); // Store the updated array back in local storage
-        editElement = inputField.value; // Update the item's content in the user interface
+    if (index !== -1) {
+      // Update the edited item's text in the groceryList
+      editElement.textContent = inputField.value;
 
-        showAlert("Item edited", "edited"); // Pass 'edited' as the action type
+      // Update the edited item's text in local storage
+      storedItems[index] = inputField.value;
+      localStorage.setItem("userInput", JSON.stringify(storedItems));
 
-        inputField.value = "";
-        submitBtn.textContent = "Submit";
-      }
+      showAlert("Item edited", "edited");
+      inputField.value = "";
+      submitBtn.removeEventListener("click", editItemHandler); // Remove the event listener once editing is done
     }
-    });
   });
 }
+
+
 
 // clear all items added
 const clearAllBtn = document.querySelector(".clear-btn");
@@ -119,6 +119,6 @@ window.addEventListener("DOMContentLoaded", function () {
   storedItems.forEach((item) => {
     addItemToGroceryList(item);
   });
-  deleteItemFromLocalStorage(storedItems);
-  editElementFromLocalStorage(storedItems);
+  // deleteItemFromLocalStorage(storedItems);
+  // editElementFromLocalStorage(storedItems);
 });
