@@ -142,7 +142,8 @@ input::placeholder {
     height: auto;
     padding: 6px 3px;
     border-radius: 10px;
-    /* background-color: yellow; */
+    overflow-y: hidden;
+    flex-wrap: wrap;
     margin: auto;
   }
   .title {
@@ -164,7 +165,7 @@ input::placeholder {
     background-color: rgb(221, 218, 218);
   }
   input::placeholder {
-    padding-left: 0px;
+    padding-left: 20px;
     font-size: 18px;
     text-align: center;
   }
