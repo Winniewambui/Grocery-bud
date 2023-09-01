@@ -146,9 +146,9 @@ input::placeholder {
     margin: auto;
   }
   .title {
-    font-size: 16px;
+    font-size: 24px;
     letter-spacing: 2px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
   .grocery-form {
     display: flex;
@@ -172,6 +172,7 @@ input::placeholder {
     height: 30px;
     font-size: 18px;
     padding: 0 10px;
+    background-color: rgb(148, 146, 146);
   }
   .grocery-container {
     cursor: pointer;
@@ -181,12 +182,11 @@ input::placeholder {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 20em;
+    width: 15em;
     height: 20px;
     padding: 15px 5px;
     margin-bottom: 0.5rem;
     text-transform: capitalize;
-    /* background-color: aqua; */
   }
   
   .button-container {
@@ -208,7 +208,7 @@ input::placeholder {
   color: rgb(250, 2, 2);
 }
 .clear-btn {
-  font-size: 20px;
+  font-size: 18px;
   padding: 50px 0;
   margin-top: 20px;
 }
